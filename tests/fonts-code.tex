@@ -1,0 +1,28 @@
+\documentclass{lumenbook}
+\title{Local fonts and listings}
+\author{Lumenbook}
+\begin{document}
+\chapter{Typography and code}
+FONT-REGULAR. Times New Roman.\par
+\textbf{FONT-BOLD. Times New Roman Bold.}\par
+\textit{FONT-ITALIC. Times New Roman Italic.}\par
+\textbf{\textit{FONT-BOLDITALIC. Times New Roman Bold Italic.}}\par
+常用中文：偏微分方程、边注、温度。
+扩展 B：𠀀；扩展 G：𰀀。
+\mn{常用中文与扩展字：𠀀、𰀀。}
+\begin{codeblock}[language=Python,title={Discrete energy},firstnumber=12]
+# FIRST-LINE: 中文注释与行号
+def energy(u, dx):
+    return 0.5 * dx * sum(v*v for v in u)
+\end{codeblock}
+\begin{margincode}[language=Python]
+# SIDE-FIRST-LINE
+dt = 0.01
+\end{margincode}
+\begin{codeblock}
+# DEFAULT-FIRST-LINE
+plain text
+\end{codeblock}
+\inputcode{examples/energy.py}
+\inputcode[language=Pseudo,title={Explicit override},numbers=none]{examples/energy.py}
+\end{document}

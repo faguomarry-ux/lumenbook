@@ -1,0 +1,14 @@
+\documentclass[print]{lumenbook}
+\usepackage{lipsum}
+\title{Long annotations}
+\author{Lumenbook}
+\begin{document}
+\chapter{Long background passages}
+Inline mathematics: $a_{\mathmark{j+1}}=\mathmark{u_j+1}$.
+\begin{markblock}[LumenMarkViolet][A background that crosses pages]
+MARKBLOCK-START.
+\lipsum[1-6]
+MARKBLOCK-END.
+\end{markblock}
+AFTER-MARKBLOCK.
+\end{document}

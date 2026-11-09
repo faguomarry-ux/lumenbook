@@ -1,0 +1,47 @@
+% Regression fixture: real output for pinned notes, rich material and options.
+% Override options at the command line, e.g.:
+% xelatex -jobname=features-print "\def\TestOptions{print,theme=mono,boxes=false,12pt}\input{tests/features.tex}"
+\providecommand{\TestOptions}{margin=outer,theme=indigo,language=chinese,10pt}
+\expandafter\documentclass\expandafter[\TestOptions]{lumenbook}
+\title{Feature checks}
+\author{Lumenbook}
+\begin{document}
+\chapter{Feature checks}
+ODD-BODY. A numbered note\sn{\label{sn:test}ODD-FLOAT. 中文编号。}
+and an ordinary paragraph.
+\vspace{30mm}\par
+PINNED-ODD-BODY.\mn[0pt]{PINNED-ODD. 固定位置边注。}
+\begin{definition}[CJK and mathematics]\label{def:test}
+中文和 English: $\norm{u}_{L^2}^2=\int_\Omega |u|^2\dd x$.
+\end{definition}
+\mn[3mm]{BOXED-PIN. A pinned note issued inside a box below.}
+\begin{readingbox}{Pinned note in a box}
+Box content.\mn[12mm]{INSIDE-BOX. 框内的固定边注。}
+\end{readingbox}
+\newpage
+EVEN-BODY.\mn{EVEN-FLOAT. 偶数页浮动边注。}
+\vspace{20mm}\par
+EVEN-PIN-BODY.\mn[0pt]{PINNED-EVEN. 偶数页固定边注。}
+\vspace{20mm}\par
+\begin{marginfigure}[0pt]
+  \rule{\linewidth}{6mm}
+  \caption{PINNED-FIGURE. 中文图题。}\label{fig:test}
+\end{marginfigure}
+The margin figure shares the figure counter.
+\vspace{30mm}\par
+\begin{margintable}
+  \caption{A table too wide at natural size}
+  \begin{smalltable}
+  \begin{tabular}{lll}\toprule
+  long English heading & second column & 中文列\\\midrule
+  value & value & 数值\\\bottomrule
+  \end{tabular}
+  \end{smalltable}
+\end{margintable}
+TABLE-BODY. Shrink the table to the sidebar width.
+\vspace{30mm}\par
+\margininputcode{examples/energy.py}
+CODE-BODY. External source file.
+\inputcode[numbers=left]{examples/energy.py}
+References: \ref{sn:test}, \ref{def:test}, \ref{fig:test}.
+\end{document}

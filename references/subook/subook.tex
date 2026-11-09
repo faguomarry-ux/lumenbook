@@ -1,0 +1,113 @@
+\documentclass[]{subook}
+% \usepackage{showframe}
+% \usepackage{ctex}
+\addbibresource{reference.bib}
+% define part color
+% !55!black to muted the color
+\newcommand{\Partcolor}{%
+  \ifcase\value{part} 
+  \or red!55!black%% Part 1
+  \or blue!55!black% Part 2
+  \or violet!55!black% Part 3
+  \or yellow!55!black% Part 4
+  \else brown!55!black% Other Part
+  \fi
+}
+
+\begin{document}
+\pagestyle{empty}
+
+% \newgeometry{paper=a4paper,marginparwidth=0pt,marginparsep=0pt,hoffset=0in,voffset=0in}
+\fullwidthpage
+\setcounter{page}{0}
+% % temporary titles
+% command to provide stretchy vertical space in proportion
+
+
+
+\begin{center}
+\bfseries
+\nbvspace[1]
+\Huge
+{\nbtitlestretch\huge
+Subook}
+
+\nbvspace[1]
+\normalsize
+
+TO WHICH IS ADDED MANY USEFUL ONE\\
+LINERS AND CODE SO THAT\\
+YOU CAN AWK LIKE A HAWK
+\nbvspace[1]
+\small BY\\
+\Large Changxing Su\\[0.5em]
+\footnotesize An Human 
+
+\nbvspace[2]
+
+% \includegraphics[width=1.5in]{./graphics/pic37}
+\nbvspace[3]
+\normalsize
+
+DOHA\\
+\large
+PUBLISHED IN THE WILD
+\nbvspace[1]
+\end{center}
+% \maketitle
+
+% \pagestyle{empty} % Disable headers and footers for the following pages
+% \dominitoc% Initialization
+
+\cleardoublepage
+\include{chapters/perface.tex}
+
+\tableofcontents % Print the table of contents itself
+\listoffigures
+\listoftables
+
+%% //FIXME:The page style of contents
+\restoregeometry
+
+
+\pagestyle{fancy} % Enable headers and footers again
+
+\newpage
+
+
+
+
+\part{User Manual}
+
+
+	% \index{preface}
+
+
+\include{chapters/introduction.tex}
+
+
+% \bibliography{reference}
+% \part{three}
+
+\include{chapters/margin.tex}
+
+\part{Biology notes}
+\include{chapters/dna.tex}
+
+\part{Machine Learning Notes}
+\include{chapters/probility.tex}
+
+\pagestyle{empty}
+
+\printbibliography[heading=bibliography,title=Bibliography]
+
+\stepcounter{part}
+\appendix
+\include{chapters/appendix.tex}
+\blinddocument
+
+
+
+% \include{chapters/margin.tex}
+% \include{CN_Chapters/page.tex}
+\end{document}

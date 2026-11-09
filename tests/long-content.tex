@@ -1,0 +1,22 @@
+\documentclass[print]{lumenbook}
+\usepackage{lipsum} % A test fixture dependency, not loaded by the class.
+\title{Page break checks}
+\author{Lumenbook}
+\begin{document}
+\chapter{Long environments}
+\begin{theorem}[Breakable background]\label{thm:long}
+LONG-THEOREM-START.
+\lipsum[1-6]
+LONG-THEOREM-END.
+\end{theorem}
+\begin{proof}
+\lipsum[7]
+\end{proof}
+\begin{readingbox}{A long reading note}
+LONG-READING-START.
+\lipsum[8-13]
+LONG-READING-END.
+\end{readingbox}
+\inputcode{tests/long-code.txt}
+END-OF-TEST. See Theorem~\ref{thm:long}.
+\end{document}

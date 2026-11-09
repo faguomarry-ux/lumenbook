@@ -1,0 +1,22 @@
+\documentclass[print,boxes=false]{lumenbook}
+\title{Reference identity checks}
+\author{Lumenbook}
+\begin{document}
+\chapter{Distinct types}
+\begin{theorem}\label{thm:r-one}A theorem.\end{theorem}
+\begin{definition}\label{def:r-one}A definition.\end{definition}
+\begin{lemma}\label{lem:r-one}A lemma.\end{lemma}
+\begin{proposition}\label{prop:r-one}A proposition.\end{proposition}
+\begin{corollary}\label{cor:r-one}A corollary.\end{corollary}
+\begin{assumption}\label{ass:r-one}An assumption.\end{assumption}
+\begin{example}\label{eg:r-one}An example.\end{example}
+\begin{exercise}\label{ex:r-one}An exercise.\end{exercise}
+\begin{remark}\label{rem:r-one}A remark.\end{remark}
+\Cref{thm:r-one,def:r-one,lem:r-one,prop:r-one,cor:r-one,ass:r-one,eg:r-one,ex:r-one,rem:r-one}.
+\chapter{A new chapter}
+\begin{definition}\label{def:r-two}A second definition.\end{definition}
+\begin{definition}\label{def:r-three}A third definition.\end{definition}
+\begin{theorem}\label{thm:r-two}A second theorem.\end{theorem}
+\Cref{def:r-two,def:r-three} have a plural name.
+Now compare \cref{thm:r-one,thm:r-two}, and \cref{def:r-one,def:r-two}.
+\end{document}

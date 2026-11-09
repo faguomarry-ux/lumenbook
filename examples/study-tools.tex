@@ -1,0 +1,88 @@
+\providecommand{\StudyOptions}{}
+\expandafter\documentclass\expandafter[\StudyOptions]{lumenbook}
+\title{A structured PDE notebook}
+\author{Lumenbook}
+\begin{document}
+\chapter{Study with structure}
+\readingsource{Original template example / 模板原创示例}
+  {Heat equation: one model, several ways to understand it.}
+\begin{learningobjectives}
+  \item Identify the equation, initial data and boundary values.
+  \item Relate a sine mode to an energy estimate.
+  \item Reconstruct a proof before opening the solution.
+\end{learningobjectives}
+\marginprogress{3}{8}
+\section{References that know their type}
+The \term{energy method}{能量方法} turns a differential equation into
+an estimate for an integral quantity.
+\begin{definition}[Energy]\label{def:study-energy}
+For a sufficiently smooth function $u$, set
+$E(t)=\frac12\int_0^L |u(x,t)|^2\dd x$.
+\end{definition}
+\begin{theorem}[Dissipation]\label{thm:study-energy}
+For a classical heat solution with zero endpoint values,
+$E'(t)=-\int_0^L|u_x(x,t)|^2\dd x\leq 0$.
+\end{theorem}
+\begin{lemma}[A sine mode]\label{lem:study-mode}
+If $k=\pi/L$ and $u(x,t)=a(t)\sin(kx)$, then $u_t=u_{xx}$
+is equivalent to $a'(t)=-k^2a(t)$.
+\end{lemma}
+\Cref{def:study-energy} introduces the quantity used in
+\cref{thm:study-energy}. The reduction in \cref{lem:study-mode}
+suggests an explicit example. Labels keep their types while sharing
+one chapter-based numerical sequence.
+
+\newpage
+\section{Practice before looking at the answer}
+\begin{exercise}[The first mode]\label{ex:study-mode}
+Solve $u_t=u_{xx}$ on $0<x<L$ with zero endpoint values and
+$u(x,0)=\sin(\pi x/L)$. Compute the decay rate of $E(t)$.
+\end{exercise}
+\begin{hint}[ex:study-mode]
+Start with the separated form $u(x,t)=a(t)\sin(\pi x/L)$.
+Apply \cref{lem:study-mode} and use $a(0)=1$.
+\end{hint}
+\begin{solution}[ex:study-mode]
+The time factor decays exponentially. Integrating
+$a'(t)=-k^2a(t)$ with $a(0)=1$ gives
+\begin{equation}\label{eq:study-answer}
+  u(x,t)=e^{-k^2t}\sin(kx),\qquad k=\frac{\pi}{L}.
+\end{equation}
+The energy is $E(t)=\frac{L}{4}e^{-2k^2t}$.
+\begin{codeblock}[language=Python,title={Decay rate}]
+from math import pi
+decay_rate = (pi / L)**2
+energy_rate = 2 * decay_rate
+\end{codeblock}
+\end{solution}
+\begin{pitfall}
+The amplitude and energy decay at different rates. Squaring the
+amplitude doubles the exponent. 注意区分振幅与能量的衰减率。
+\end{pitfall}
+
+\newpage
+\section{A deliberate review}
+\begin{chaptersummary}
+  \item A boundary condition can remove an integration-by-parts term.
+  \item A separated solution provides a concrete check of an estimate.
+  \item Energy decay describes a global quantity, not pointwise monotonicity.
+\end{chaptersummary}
+\begin{reviewchecklist}
+  \checkitem[done]{I can state the equation and all data precisely.}
+  \checkitem[done]{I can recover the sine-mode calculation without notes.}
+  \checkitem[question]{I still need to justify the regularity assumptions.}
+  \checkitem{I can adapt the argument to a new boundary condition.}
+\end{reviewchecklist}
+\begin{readingbox}{Progress is supplied by the reader}
+Use the bar to track a chosen page range, exercise list or reading plan.
+The values are entered manually; completing pages is distinct from
+understanding their proofs.
+\readingprogress{3}{8}
+\end{readingbox}
+\begin{codeblock}[language=LaTeX,title={Two editions from one source}]
+% Reading edition: hints and solutions are visible by default.
+\documentclass{lumenbook}
+% Self-test edition:
+% \documentclass[solutions=false,hints=false]{lumenbook}
+\end{codeblock}
+\end{document}

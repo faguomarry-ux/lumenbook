@@ -1,0 +1,69 @@
+\providecommand{\AnnotationOptions}{}
+\expandafter\documentclass\expandafter[\AnnotationOptions]{lumenbook}
+\title{Reading marks / 阅读标记}
+\author{Lumenbook}
+\begin{document}
+\chapter{Reading with a pencil}
+\section{Underlines and small annotations}
+Underline a hypothesis: \textul{the boundary values vanish}.
+中文也可以画线：\textul{先确认初始条件与边界条件，再判断结论的适用范围。}
+
+\textwave{A condition to check / 尚待确认的条件} uses a wave.
+Use \textstrike{an incorrect interpretation / 原来的错误理解} to record a revision.
+\textaccent[LumenBlue]{Blue text / 蓝色文字} can distinguish a term.
+
+The phrase \annotate{weak solution}{弱解首先指满足积分恒等式的函数。
+这里的标记自动连接到编号边注。} links the underlined text to a numbered note.
+
+\section{A palette for reading}
+\textmark{Yellow / 黄色：关键结论}
+\textmark[LumenMarkGreen]{Green / 绿色：已经理解}
+\textmark[LumenMarkBlue]{Blue / 蓝色：概念与定义}
+\textmark[LumenMarkRose]{Rose / 玫瑰色：待确认}
+\textmark[LumenMarkViolet]{Violet / 紫色：联系与推广}
+
+\textmark{HIGHLIGHT-START. This deliberately long bilingual passage wraps
+over several lines. 阅读英文教材时，使用荧光底色标出结论，使用下划线标出条件，
+在重新阅读时就能迅速区分论证的输入与输出。HIGHLIGHT-END.}
+
+\begin{markblock}[LumenMarkGreen][An understood step / 已理解的步骤]
+The boundary term vanishes because the boundary values are zero.
+这一整段使用淡绿色背景，可以包含多段文字与数学内容。
+\[
+  E'(t)+\mathmark{\norm{\nabla u(t)}_{L^2}^2}=0.
+\]
+\end{markblock}
+\begin{markblock}[LumenMarkRose][A question to revisit / 待回看的问题]
+Which regularity assumption justifies integration by parts?
+分部积分需要什么正则性条件？
+\end{markblock}
+
+\newpage
+\section{Long passages and the margin}
+\mn{\textul{边注中的下划线}。\par
+  \textmark[LumenMarkGreen]{边注也可以用背景色标注中文或 English terms。}}
+\textul{UNDERLINE-START. Mark the assumptions before reading the proof.
+中文下划线也应当随文字自动换行，而不把整个句子锁成一个长盒子。
+这一点对于正文和窄边栏都很重要。UNDERLINE-END.}
+
+\begin{markblock}[LumenMarkViolet][Connections / 知识联系]
+\begin{itemize}
+  \item \textbf{Hypothesis.} Check the domain and boundary conditions.
+  \item \textbf{Conclusion.} Separate existence, uniqueness and regularity.
+  \item \textbf{Mechanism.} Reconstruct the energy argument.
+\end{itemize}
+\end{markblock}
+\begin{codeblock}[language=LaTeX,title={A compact interface}]
+\textul{中文与 English 下划线}
+\textwave{有疑问的文字}
+\textstrike{删除的文字}
+\textmark[LumenMarkYellow]{黄色背景}
+\annotate{weak solution}{这里写编号边注}
+\begin{markblock}[LumenMarkBlue][标题可省略]
+整段内容，支持列表、公式与跨页。
+\end{markblock}
+\end{codeblock}
+\section{\textmark[LumenMarkYellow]{Marked headings}}
+The PDF outline keeps this heading as ordinary searchable text.
+\emph{Emphasis remains italic.} Native emphasis is not converted to an underline.
+\end{document}

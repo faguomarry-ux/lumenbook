@@ -1,0 +1,29 @@
+% Your own notes start here. Compiler: XeLaTeX (or LuaLaTeX).
+% For two-sided printing: \documentclass[print,bindingoffset=4mm]{lumenbook}
+\documentclass{lumenbook}
+\title{Partial Differential Equations}
+\subtitle{Reading notes / 偏微分方程学习札记}
+\author{My study notebook}
+\date{\today}
+\begin{document}
+\frontmatter
+\maketitle
+\tableofcontents
+\mainmatter
+\chapter{Getting started}
+\section{The first equation}
+Keep the \textul{English statement} here.\mn{这里写中文理解、术语或疑问。}
+\begin{definition}[A model equation]\label{def:model}
+The heat equation is $\partial_t u-\Delta u=0$.
+\end{definition}
+\begin{translationbox}
+把原书的条件、结论与\textmark{自己的理解}分别记清楚。
+\end{translationbox}
+\begin{margincode}[language=Python]
+# 中文代码注释
+dt = 0.01
+\end{margincode}
+\begin{exercise}
+Which conditions are imposed on the boundary and at the initial time?
+\end{exercise}
+\end{document}

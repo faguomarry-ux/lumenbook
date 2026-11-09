@@ -1,0 +1,272 @@
+% Original mathematical examples, written for this template demonstration.
+% No excerpt from a particular textbook is reproduced here.
+\title{Partial Differential\\Equations}
+\subtitle{澄明讲义\enspace /\enspace A bilingual reading companion}
+\author{Lumenbook · 学习笔记模板}
+\date{9 November 2026}
+\begin{document}
+\frontmatter
+\maketitle
+\tableofcontents
+\mainmatter
+
+\chapter{Diffusion and energy}
+\section{A model problem}
+The heat equation connects a local differential law with a global
+energy principle. We begin with a one-dimensional rod of length $L>0$,
+with both endpoints held at zero temperature.\mn{\marginheading{Reading lens / 阅读线索}
+先圈出空间区域、时间区间、初值与边界条件，再看作者使用的解的正则性。}
+\begin{equation}\label{eq:heat}
+  \begin{cases}
+    u_t-u_{xx}=0, & 0<x<L,\quad 0<t<T,\\
+    u(0,t)=u(L,t)=0, & 0\leq t\leq T,\\
+    u(x,0)=u_0(x), & 0\leq x\leq L.
+  \end{cases}
+\end{equation}
+
+\begin{definition}[Classical solution]\label{def:classical}
+For this example, a classical solution has continuous derivatives
+$u_t$, $u_x$ and $u_{xx}$ on $[0,L]\times[0,T]$ and satisfies
+\eqref{eq:heat} pointwise, with one-sided derivatives at the endpoints.
+\end{definition}
+
+\begin{marginfigure}
+  \begin{tikzpicture}[x=0.42cm,y=0.65cm]
+    \draw[->,LumenMuted] (0,0)--(9.5,0) node[right] {$x$};
+    \draw[->,LumenMuted] (0,0)--(0,2.7) node[above] {$u$};
+    \draw[LumenAccent,thick,domain=0:9,samples=50]
+      plot (\x,{2.1*sin(20*\x)});
+    \draw[LumenBlue,dashed,domain=0:9,samples=50]
+      plot (\x,{1.0*sin(20*\x)});
+    \node[below] at (9,0) {$L$};
+  \end{tikzpicture}
+  \caption{A decaying sine mode. 振幅随时间衰减。}\label{fig:mode}
+\end{marginfigure}
+\begin{theorem}[Energy dissipation]\label{thm:energy}
+For a classical solution of \eqref{eq:heat}, the energy
+$E(t)=\frac12\int_0^L |u(x,t)|^2\dd x$ satisfies
+\[
+  E'(t)=-\int_0^L |u_x(x,t)|^2\dd x\leq 0.
+\]
+\end{theorem}
+\begin{proof}
+Multiply the equation by $u$ and integrate in space. Integration by
+parts gives
+\[
+  E'(t)=\int_0^L u u_t\dd x
+  =\bigl[u u_x\bigr]_0^L-\int_0^L |u_x|^2\dd x.
+\]
+The boundary term vanishes because $u=0$ at both endpoints.
+\end{proof}
+\begin{translationbox}
+\textbf{中文理解。}先把方程乘以解本身，再做分部积分。
+边界条件消去端点项，扩散项因此变成非正的能量变化率。
+“能量不增加”来自这个符号，而不是温度处处单调下降。
+\end{translationbox}
+
+\newpage
+\section{From derivatives to test functions}
+For Poisson's equation $-\Delta u=f$ on a bounded domain
+$\Omega\subset\R^d$, the weak formulation moves one derivative from
+$u$ onto a test function.\sn{\label{sn:weak}Weak 不表示结论较弱；这里首先改变的是“满足方程”的表达方式。}
+Under suitable smoothness and zero boundary conditions,
+\begin{equation}\label{eq:weak}
+  \int_\Omega \nabla u\cdot\nabla v\dd x
+  =\int_\Omega fv\dd x.
+\end{equation}
+
+\begin{margintable}
+  \caption{A compact glossary / 术语表}\label{tab:glossary}
+  \begin{smalltable}
+    \begin{tabular}{@{}ll@{}}
+      \toprule
+      English & 中文\\\midrule
+      test function & 测试函数\\
+      boundary trace & 边界迹\\
+      coercivity & 强制性\\
+      weak solution & 弱解\\\bottomrule
+    \end{tabular}
+  \end{smalltable}
+\end{margintable}
+\begin{definition}[Weak Dirichlet solution]\label{def:weak}
+Let $\Omega$ be a bounded Lipschitz domain and $f\in L^2(\Omega)$.
+A function $u\in H_0^1(\Omega)$ is a weak solution if
+\eqref{eq:weak} holds for every $v\in H_0^1(\Omega)$.
+\end{definition}
+
+\begin{readingbox}{What to record beside a theorem}
+\begin{enumerate}
+  \item \textbf{Objects.} Which function space contains the unknown?
+  \item \textbf{Hypotheses.} Where are boundedness and boundary regularity used?
+  \item \textbf{Mechanism.} Is the argument based on energy, compactness or duality?
+  \item \textbf{Scope.} Does the conclusion give existence, uniqueness or regularity?
+\end{enumerate}
+\end{readingbox}
+
+\begin{margincode}[language=Python]
+# 能量的离散近似
+import numpy as np
+E = 0.5 * dx * np.sum(u**2)
+\end{margincode}
+For numerical intuition, approximate the energy by a quadrature rule.
+This computation illustrates a quantity; a discrete scheme needs its
+own stability argument. A plot alone does not prove the energy identity.
+
+\begin{example}[A single sine mode]
+With $k=\pi/L$, the function
+\[
+  u(x,t)=e^{-k^2t}\sin(kx)
+\]
+solves \eqref{eq:heat} with $u_0(x)=\sin(kx)$. Substitution verifies
+both the equation and the boundary values. Figure~\ref{fig:mode}
+illustrates two amplitudes of this mode.
+\end{example}
+\begin{exercise}
+For this explicit solution, compute $E(t)$ and check
+Theorem~\ref{thm:energy} directly. Then explain why the sign in the
+exponential must be negative.
+\end{exercise}
+
+\chapter{A notebook that can grow}
+\section{Read, translate, reconstruct}
+英文正文保留原有的数学叙述节奏，中文边注记录术语、直觉和局部疑问。
+遇到一个重要结论，可以先整理为定义或定理，再用底色框写出自己的理解。
+\mn{\textbf{本页验证}\\中文正文、中文边注、彩色框，以及带编号的交叉引用。
+默认模式中，本页和前一页的边注都在右侧。}
+
+\begin{notebox}{Three passes / 三遍阅读}
+\textbf{第一遍：定位。}写出研究对象与结论，暂时跳过技术细节。\par
+\textbf{第二遍：重建。}合上书，补全每一步推理需要的条件。\par
+\textbf{第三遍：检验。}用一个简单模型和一个边界情形检查自己的理解。
+\end{notebox}
+
+\begin{proposition}[A useful reading distinction]\label{prop:reading}
+A formal calculation suggests a proof strategy. To turn it into a
+proof, justify every derivative, integral and limiting operation under
+the hypotheses actually stated.
+\end{proposition}
+\begin{remark}
+这里的命题用于演示排版。学习笔记应区分原书结论、自己补写的证明和
+尚待确认的猜想，并在实际引用时注明原书版本、章节和页码。
+\end{remark}
+
+\begin{readingbox}{Cross-references that stay useful}
+The class uses ordinary \LaTeX{} labels: see
+Definition~\ref{def:classical}, Theorem~\ref{thm:energy},
+equation~\eqref{eq:weak} and Table~\ref{tab:glossary}.
+The numbered sidenote on page~\pageref{sn:weak} has its own label.
+\end{readingbox}
+
+\subsection{Rich material in the margin}
+\begin{marginblock}
+  \begin{tcolorbox}[lumen panel,breakable=false,title={小结 / Recap},
+    left=5pt,right=5pt,top=5pt,bottom=5pt,before skip=0pt,after skip=0pt]
+    边栏也能放小型底色框。\\[3pt]
+    $\displaystyle E(t)\leq E(0)$\\[3pt]
+    Keep one idea per note.
+  \end{tcolorbox}
+\end{marginblock}
+Figures and tables share the normal counters. Margin blocks use their
+own local line width, so \verb|width=\linewidth| adapts an image to
+the sidebar. A small table can be wrapped in \verb|smalltable| to shrink
+it only when its natural width exceeds the available space.
+
+\begin{translationbox}
+边栏用于补充主线。较长的证明、复杂表格和大段代码适合留在正文；
+整页宽的公式或比较表可以使用后面的 \texttt{widepage} 环境。
+\end{translationbox}
+
+\newpage
+\section{A small, predictable interface}
+Keep the class, style files and font folder beside your main
+\texttt{.tex} file. To start writing, use the supplied \texttt{main.tex}.
+\mn{\textbf{偶数页检查}\\若以 \texttt{print} 模式编译，本页的这条边注应位于左侧。
+正文版心同时向右移动，为装订后的外侧边栏留出空间。}
+
+\begin{codeblock}[language=LaTeX,title={A minimal notebook}]
+\documentclass{lumenbook} % 默认边注始终在右侧
+% 双面打印时，改为：
+% \documentclass[print,bindingoffset=4mm]{lumenbook}
+\title{My PDE notebook}
+\author{Your name}
+\begin{document}
+\maketitle
+\chapter{The heat equation}
+English text.\mn{这里写中文边注。}
+\end{document}
+\end{codeblock}
+
+\subsection{Putting code in the sidebar}
+Use \verb|margincode| for code in a margin. A language label and line
+numbers make short examples easy to discuss. Chinese comments and
+automatic wrapping are supported. File imports infer the language from
+the extension, for example \verb|\inputcode{solver.py}|.
+\begin{margincode}[language=Python,title={Heat step}]
+# 显式差分：仅作代码排版示例
+r = dt / dx**2
+u[1:-1] += r * (
+    u[2:] - 2*u[1:-1] + u[:-2]
+)
+\end{margincode}
+
+\begin{notebox}{Placement controls / 边注位置}
+Without an offset, notes use the standard margin-placement mechanism.
+It separates adjacent notes.\par
+\verb|\mn[6mm]{...}| and \verb|\begin{marginfigure}[6mm]| pin a note
+with a vertical offset instead. Positive values move it down.
+Pinned notes need a visual check because they may overlap.
+\end{notebox}
+
+\begin{readingbox}{Choose the appearance}
+Choose jade, indigo or grayscale with the theme option. The language
+option switches theorem and figure names to Chinese. Set the boxes
+option to false for plain theorems. Chinese text is available in every mode.
+\end{readingbox}
+
+\begin{widepage}
+\section*{A full-width comparison / 整页宽的比较表}
+This page deliberately borrows the sidebar area. The following page
+restores the original margin geometry automatically.
+\begin{readingbox}{Keep the question, hypotheses and mechanism together}
+Use a wide page for content that benefits from horizontal space.
+No margin note is placed on this page.
+\end{readingbox}
+\begin{center}
+\renewcommand{\arraystretch}{1.7}
+\begin{tabularx}{\linewidth}{@{}l*{3}{>{\RaggedRight\arraybackslash}X}@{}}
+\toprule
+Viewpoint & Main object & What to check & 中文提示\\\midrule
+Classical & Pointwise derivatives & Differentiability and boundary values
+  & 每一步微分运算都有意义。\\
+Weak & Integral identities & Test space and trace conditions
+  & 导数转移给测试函数。\\
+Energy & Norms and quadratic quantities & Signs and boundary terms
+  & 估计往往比显式解更重要。\\
+Numerical & A finite set of unknowns & Consistency, stability and convergence
+  & 图像直觉与数学证明分开记录。\\\bottomrule
+\end{tabularx}
+\end{center}
+\vspace{12mm}
+\begin{equation*}
+  \underbrace{\frac12\frac{\dd}{\dd t}\norm{u(t)}_{L^2(\Omega)}^2}
+    _{\text{change in energy}}
+  +\underbrace{\norm{\nabla u(t)}_{L^2(\Omega)}^2}
+    _{\text{dissipation}}
+  =\underbrace{0}_{\text{homogeneous heat equation}}.
+\end{equation*}
+\end{widepage}
+
+\section{Back to the margin layout}
+The margin width, headers and page-side behavior have been restored.
+\mn{\textbf{恢复检查 / Restored layout}\\这是整页宽环境之后的第一条边注。
+打印模式下本页是偶数页，边注应回到左侧；默认模式下仍在右侧。}
+\begin{readingbox}{Ready for your own textbook}
+Record the edition and page range before you begin. Then replace this
+demonstration with your own chapter files, keeping English statements,
+Chinese explanations and open questions close to one another.
+\end{readingbox}
+\begin{definition}[A useful note]
+A useful note identifies one idea, states the assumptions it needs and
+points back to the place where the idea is used.
+\end{definition}
+\end{document}

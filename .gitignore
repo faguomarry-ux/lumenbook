@@ -1,0 +1,89 @@
+# Local build output, render checks and extracted test packages
+/build/
+/tmp/
+
+# Keep only the intentional downloadable starter archive.
+/dist/*
+!/dist/lumenbook-starter.zip
+
+# Version the published PDF/PNG previews, not arbitrary output files.
+/output/*
+!/output/pdf/
+/output/pdf/*
+!/output/pdf/*.pdf
+!/output/pdf/*.png
+
+# TeX intermediate files (also applies inside references/)
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex
+*.synctex.gz
+*.synctex(busy)
+*.synctex.gz(busy)
+*.pdfsync
+*.xdv
+*.dvi
+*.fmt
+*.bbl
+*.bcf
+*.blg
+*-blx.bib
+*.run.xml
+*.idx
+*.ilg
+*.ind
+*.ist
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.nlo
+*.nls
+*.nlg
+*.loa
+*.lol
+*.loe
+*.nav
+*.snm
+*.vrb
+*.cut
+*.maf
+*.mtc*
+*.mlf*
+*.mlt*
+*.ptc
+*.thm
+_minted*/
+
+# Python and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Editor and OS files
+.idea/
+*.code-workspace
+*.swp
+*.swo
+*.bak
+*.backup
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Project fonts, input images/PDFs, reference source snapshots, licenses and
+# the deliberate output/pdf previews are versioned project resources.

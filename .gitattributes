@@ -1,0 +1,26 @@
+# Keep the maintained TeX/code/documentation sources consistent across systems.
+* text=auto
+.gitattributes text eol=lf
+.gitignore text eol=lf
+latexmkrc text eol=lf
+*.tex text eol=lf
+*.cls text eol=lf
+*.sty text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.ps1 text eol=lf
+*.txt text eol=lf
+
+# Binary project assets.
+*.ttf binary
+*.otf binary
+*.ttc binary
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.zip binary
+
+# Preserve the vendored reference snapshots byte-for-byte, including endings.
+references/** -text -whitespace
+LICENSE -text -whitespace

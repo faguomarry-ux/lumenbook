@@ -1,0 +1,30 @@
+% Build from the repository root:
+% xelatex -output-directory=build examples/minimal-chinese.tex
+\documentclass[language=chinese,theme=indigo]{lumenbook}
+\title{偏微分方程学习札记}
+\author{学习者}
+\date{\today}
+\begin{document}
+\chapter{扩散方程}
+\section{中文与英文混排}
+The heat equation 描述扩散过程。\sn{中文编号边注。}
+\begin{definition}[热方程]\label{def:heat}
+方程 $u_t-\Delta u=0$ 称为热方程。
+\end{definition}
+\begin{proof}
+此处仅演示中文证明环境及证毕符号。\qedhere
+\end{proof}
+\begin{marginfigure}
+\fbox{\rule{0pt}{12mm}\rule{28mm}{0pt}}
+\caption{中文图题}
+\end{marginfigure}
+\begin{codeblock}[language=Python,title={中文代码示例}]
+# 中文注释与 Unicode 字符
+temperature = 1.0
+\end{codeblock}
+\newpage
+\begin{theorem}[第二页]
+这里演示定理的编号。
+\end{theorem}
+默认的第二页边注仍应在右侧。\mn{默认右边栏。}
+\end{document}
