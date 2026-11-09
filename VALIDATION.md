@@ -2,6 +2,52 @@
 
 Date: 2026-11-09 (Asia/Shanghai).
 
+## PDE cover refinement (2026-11-09)
+
+- Refined the cover's blue/gold/mist palette, panel proportions, 48 pt
+  title and 49 pt baseline spacing. Moved the subtitle closer to the title,
+  added a fine reference separator, and aligned the smaller bilingual
+  imprint and date. Replaced the slogan with a typeset heat equation.
+- Added `\coverequation{...}` (math content) and verified that an empty
+  argument hides the equation. Compiled that variant with `fonts=tex`.
+- Fresh builds: XeLaTeX standalone cover and `main.tex`, LuaLaTeX
+  standalone cover, XeLaTeX print/mono cover with 4 mm binding offset,
+  and the XeLaTeX TeX-font/hidden-equation cover. All five relevant logs
+  passed the same missing-character, overfull-box and reference checks.
+- Visually reviewed color and mono renders; checked all five documents'
+  A4 sizes, page counts, metadata and text bounds with PyMuPDF. The notes
+  still have three pages, with contents `ii` and first body page `1`.
+- Compared rendered samples: the standalone and integrated covers are
+  pixel-identical. Verified equation text appears in its expected band
+  in the standard cover and is absent from the hidden-equation variant.
+- Updated the two published PDE PDFs, PNG preview, documentation and
+  starter archive. Other cover styles and body typography were unchanged;
+  the full unrelated feature-test matrix was not rerun for this revision.
+
+## PDE cover addition (2026-11-09)
+
+- Added the optional `cover=pde` vector title page in `lumen-cover.sty`;
+  `main.tex` opts in, while the default remains `cover=editorial`.
+- `pwsh -File scripts/build.ps1` rebuilt all seven regular XeLaTeX targets
+  and passed the script's log checks. This addition did not rerun the full
+  `-Check` matrix; pre-existing test PDFs are not counted as new builds.
+- Independently compiled the standalone cover with LuaLaTeX, and a
+  XeLaTeX `print,bindingoffset=4mm,theme=mono` variant. The four relevant
+  logs have no overfull boxes, missing characters, undefined references,
+  font-shape substitutions, duplicate labels or duplicate destinations.
+- Inspected rendered PNGs of the final color cover, LuaLaTeX cover,
+  print/mono cover, contents and first body page. No overlap, clipping or
+  missing glyphs was observed.
+- PyMuPDF confirmed one A4 page for each standalone cover, three A4 pages
+  for the notes, all extracted text inside the physical page, the full
+  PDF title metadata, contents folio `ii` and first body folio `1`.
+- Deliverables: `output/pdf/lumenbook-pde-cover.pdf`, its PNG preview,
+  and `output/pdf/lumenbook-pde-notes.pdf`. Updated the starter archive.
+- This cover uses fixed positions tuned for the supplied three-line title
+  and short metadata. Other title lengths need a visual check. No physical
+  print, trim/bleed production workflow or independent design review was
+  performed.
+
 Current revision: v1.3, study-workflow edition, retaining local fonts,
 numbered code and reading annotations.
 

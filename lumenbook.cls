@@ -20,6 +20,7 @@
 \DeclareStringOption[fonts/]{fontpath}
 \DeclareStringOption[english]{language}
 \DeclareStringOption[jade]{theme}
+\DeclareStringOption[editorial]{cover}
 \DeclareStringOption[0mm]{bindingoffset}
 \DeclareBoolOption[true]{boxes}
 \DeclareBoolOption[true]{solutions}
@@ -82,6 +83,7 @@
 \RequirePackage{graphicx,booktabs,tabularx,enumitem}
 \setlist{nosep,topsep=5pt,leftmargin=*}
 \RequirePackage{lumen-style}
+\RequirePackage{lumen-cover}
 \RequirePackage{lumen-margins}
 \RequirePackage{lumen-math}
 \RequirePackage{lumen-code}

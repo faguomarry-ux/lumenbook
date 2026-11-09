@@ -10,7 +10,7 @@ try {
     $buildDirectory = if ($Engine -eq 'xelatex') { 'build' } else { 'build/lua' }
     New-Item -ItemType Directory -Force -Path $buildDirectory | Out-Null
     $targets = @('main.tex', 'demo-screen.tex', 'demo-print.tex', 'examples/minimal-chinese.tex',
-        'examples/annotations.tex', 'examples/study-tools.tex')
+        'examples/annotations.tex', 'examples/study-tools.tex', 'examples/pde-cover.tex')
     if ($Check) {
         $targets += @('tests/features.tex', 'tests/features-screen.tex', 'tests/long-content.tex',
             'tests/fonts-code.tex', 'tests/portable-fonts.tex',
@@ -40,6 +40,8 @@ try {
         Copy-Item -LiteralPath build/demo-print.pdf -Destination output/pdf/lumenbook-print.pdf
         Copy-Item -LiteralPath build/annotations.pdf -Destination output/pdf/lumenbook-annotations.pdf
         Copy-Item -LiteralPath build/study-tools.pdf -Destination output/pdf/lumenbook-study-tools.pdf
+        Copy-Item -LiteralPath build/pde-cover.pdf -Destination output/pdf/lumenbook-pde-cover.pdf
+        Copy-Item -LiteralPath build/main.pdf -Destination output/pdf/lumenbook-pde-notes.pdf
     }
     Write-Host "Build and log checks passed. PDF files: $buildDirectory"
 } finally {

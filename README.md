@@ -1,8 +1,33 @@
 # Lumenbook · 澄明讲义
 
-适合阅读英文数学教材时使用的中英混排边注讲义类。以 [`references/subook/subook.cls`](references/subook/subook.cls) 为主要设计依据，参考 [`references/kaobook-master/`](references/kaobook-master/) 的浅底色环境与配置拆分方式，重新实现为独立的 `lumenbook.cls` 和七个样式包。
+适合阅读英文数学教材时使用的中英混排边注讲义类。以 [`references/subook/subook.cls`](references/subook/subook.cls) 为主要设计依据，参考 [`references/kaobook-master/`](references/kaobook-master/) 的浅底色环境与配置拆分方式，重新实现为独立的 `lumenbook.cls` 和八个样式包。
 
 “Lumen” 有光与明晰之意：正文保留推理主线，边栏照亮术语、直觉和疑问。默认青玉配色，白色纸面，温和的背景色与细竖线区分数学内容。
+
+新增 **PDE 封面**：参考 Evans《Partial Differential Equations》AMS 第二版封面的蓝黄几何构图，使用独立绘制的矢量色块、中英文字排版和学习札记标识。精修版加大主标题、收紧行距，使用深海蓝与柔和金黄，通过细分隔线整理参考书说明和署名，并以热方程作为底部数学标识。`main.tex` 已启用；其他文档仍可使用原来的暖纸色封面。
+
+![PDE 封面预览](output/pdf/lumenbook-pde-cover.png)
+
+- [独立封面 PDF](output/pdf/lumenbook-pde-cover.pdf)
+- [带新封面的讲义入口 PDF](output/pdf/lumenbook-pde-notes.pdf)
+- [独立封面源码](examples/pde-cover.tex)
+
+```tex
+\documentclass[cover=pde]{lumenbook}
+\title{Partial Differential Equations} % PDF 元数据保留完整标题
+\covertitle{Partial\\Differential\\Equations} % 单独控制封面换行
+\notebookseries{MATHEMATICS\\READING COMPANION}
+\subtitle{偏微分方程\enspace /\enspace 学习札记}
+\coverreference{Reading companion to\\Lawrence C. Evans, Second Edition}
+\covermark{PDE}
+\coverequation{\partial_t u-\Delta u=0} % 数学模式内容，留空则隐藏
+\author{My study notebook}
+\date{\today}
+```
+
+用 `cover=editorial`（默认）切回原封面。新封面使用独立的深蓝、金黄、蓝灰配色；`theme=mono` 会同步切换封面为灰度。`\covertitle`、`\coverreference`、`\covermark`、`\coverequation` 只影响 PDE 封面。底部默认展示热方程；可用 `\coverequation{-\Delta u=f}` 换为 Poisson 方程，或用 `\coverequation{}` 隐藏。固定版面按 A4、三行英文标题、简短副标题与两行参考说明设计；更长的文字应调整封面字号或坐标，并检查渲染结果。原书仅作视觉参考，封面中的作者栏用于填写札记作者，参考书作者另列在说明中。
+
+独立封面可用 `latexmk -xelatex examples/pde-cover.tex` 编译，生成 `build/pde-cover.pdf`。新模块 `lumen-cover.sty` 与其他类／样式文件一起复制，打包脚本已包含它。
 
 当前版本 **v1.3**，已在 TeX Live 2026 的 XeLaTeX 与 LuaLaTeX 下完成 32 组构建检查。支持本地字体、中英文边注、边栏图表、带行号与语言标签的代码、文字荧光标记，以及可切换的提示／解答版式。详细检查记录见 [VALIDATION.md](VALIDATION.md)。
 
@@ -25,7 +50,7 @@
 ```text
 lumenbook/
 ├── lumenbook.cls           # 主类文件
-├── lumen-*.sty             # 七个独立配置模块
+├── lumen-*.sty             # 八个独立配置模块
 ├── main.tex                # 直接开写的入口
 ├── fonts/                  # 本地字体与字体角色说明
 ├── examples/               # 完整内容、文字标记、学习工具示例
@@ -67,7 +92,7 @@ latexmk -xelatex main.tex
 xelatex -no-shell-escape -interaction=nonstopmode main.tex
 ```
 
-在新文件夹使用时，复制 `lumenbook.cls`、七个 `lumen-*.sty`、`fonts/` 和 `main.tex`。没有本地字体目录时会使用 TeX 字体作为后备。使用 VS Code / TeXstudio / Overleaf 时将编译器设为 XeLaTeX，首次至少编译两轮。
+在新文件夹使用时，复制 `lumenbook.cls`、八个 `lumen-*.sty`、`fonts/` 和 `main.tex`。没有本地字体目录时会使用 TeX 字体作为后备。使用 VS Code / TeXstudio / Overleaf 时将编译器设为 XeLaTeX，首次至少编译两轮。
 
 批量构建与检查：
 
@@ -453,6 +478,7 @@ See \cref{def:energy}. % definition 1.1
 | `lumenbook.cls` | 类选项、中文和字体、页面几何、总装配 |
 | `lumen-fonts.sty` | 本地字体优先、四字重映射、中文主字体与扩展字补字 |
 | `lumen-style.sty` | 配色、章节标题、页眉页脚、封面、阅读底色框 |
+| `lumen-cover.sty` | PDE 蓝黄几何封面、独立标题换行和参考书说明 |
 | `lumen-margins.sty` | 文字边注、编号边注、富边栏、表格缩放、整页宽布局 |
 | `lumen-math.sty` | 数学环境、统一编号、证明、常用数学符号 |
 | `lumen-code.sty` | 中文代码、行号、语言标题栏、边栏代码、文件导入 |

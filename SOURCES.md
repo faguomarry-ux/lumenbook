@@ -1,5 +1,25 @@
 # Design sources and provenance
 
+## PDE cover design reference
+
+The optional `cover=pde` title page takes visual direction from the blue,
+yellow and blue-gray geometric cover of Lawrence C. Evans, *Partial
+Differential Equations*, Second Edition, AMS Graduate Studies in Mathematics
+19. The reference cover was visually inspected on 2026-11-09:
+https://donkuri.github.io/learn-mathematics/img/evans.jpg
+The AMS bibliographic/advertising reference is
+https://www.ams.org/journals/notices/201004/rtx100400501p.pdf
+(search-index text was available; direct PDF access returned HTTP 403).
+
+`lumen-cover.sty` is new TikZ code with its own proportions, palette and
+reading-companion typography. The refined version adds a typeset model
+heat equation and a bilingual Lumenbook imprint; these are new elements.
+No publisher logo, original cover image or
+book excerpt is included in the output or distributed source. The original
+publisher's design is not relicensed by this project's LPPL. The reference
+book author appears in the reading-reference field; the notebook author is
+the user's separate metadata field.
+
 Lumenbook is a new implementation under the LaTeX Project Public License,
 version 1.3c or (at your option) any later version. The unmodified license
 text is in `LICENSE` (copied from the local subook distribution). The new

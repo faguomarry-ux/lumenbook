@@ -5,7 +5,7 @@ try {
     $files = @(
         'lumenbook.cls', 'lumen-style.sty', 'lumen-margins.sty',
         'lumen-math.sty', 'lumen-code.sty', 'lumen-fonts.sty', 'lumen-mark.sty',
-        'lumen-study.sty', 'main.tex',
+        'lumen-study.sty', 'lumen-cover.sty', 'main.tex',
         'demo-screen.tex', 'demo-print.tex', 'latexmkrc', '.gitignore', '.gitattributes',
         'README.md', 'SOURCES.md', 'VALIDATION.md', 'LICENSE',
         'examples', 'scripts', 'tests', 'output', 'fonts'
