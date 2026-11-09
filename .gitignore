@@ -2,9 +2,10 @@
 /build/
 /tmp/
 
-# Keep only the intentional downloadable starter archive.
+# Keep only the intentional downloadable starter and clean book archives.
 /dist/*
 !/dist/lumenbook-starter.zip
+!/dist/lumenbook-book-clean.zip
 
 # Version the published PDF/PNG previews, not arbitrary output files.
 /output/*

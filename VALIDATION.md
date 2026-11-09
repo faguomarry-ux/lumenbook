@@ -2,6 +2,25 @@
 
 Date: 2026-11-09 (Asia/Shanghai).
 
+## Clean writing package (2026-11-09)
+
+- Added `templates/book/` with a minimal chapter-based writing skeleton,
+  separate book metadata, short instructions and compact source credits.
+- `scripts/package-book.ps1` uses explicit file lists to produce
+  `dist/lumenbook-book-clean.zip`: exactly 17 files, 26,061 bytes at this
+  revision. The package retains all nine class/style files, the license
+  and latexmk configuration, but no font binaries, preview media,
+  demonstrations, tests, reference snapshots or build output.
+- Default configuration uses `print,bindingoffset=4mm,fonts=tex,fontset=fandol`.
+  It relies on the installed TeX distribution rather than repository fonts.
+- Extracted the finished ZIP to a fresh temporary directory. Both XeLaTeX
+  and LuaLaTeX independently compiled the extracted entry point with clean
+  logs. `kpsewhich lumenbook.cls` resolved `./lumenbook.cls` in that folder.
+- Checked ZIP CRCs, file count and excluded paths/types. Both engines
+  produced three-page PDFs with the expected title metadata and text
+  within page bounds. Visually checked the extracted book's cover and
+  opening chapter. Validation output is outside the distributed ZIP.
+
 ## PDE cover refinement (2026-11-09)
 
 - Refined the cover's blue/gold/mist palette, panel proportions, 48 pt

@@ -1,0 +1,15 @@
+% Compile with XeLaTeX from this directory: latexmk -xelatex main.tex
+% Screen layout: replace print,bindingoffset=4mm with screen.
+\documentclass[cover=pde,print,bindingoffset=4mm,fonts=tex,fontset=fandol]{lumenbook}
+\input{book-info}
+
+\begin{document}
+\frontmatter
+\maketitle
+\tableofcontents
+
+\mainmatter
+\input{chapters/01-introduction}
+% Add further chapters here with \input{chapters/02-your-chapter}.
+
+\end{document}

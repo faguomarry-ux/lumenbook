@@ -1,5 +1,7 @@
 # Lumenbook · 澄明讲义
 
+**直接开始写书：**下载 [写书净版压缩包](dist/lumenbook-book-clean.zip)。仅 17 个文件、约 26 KB，保留排版引擎和章节骨架，使用 TeX 发行版自带字体；不附演示、测试、参考项目、预览及编译产物。解压后修改 `book-info.tex` 和 `chapters/01-introduction.tex`，运行 `latexmk -xelatex main.tex`。可用 `pwsh -File scripts/package-book.ps1` 重新生成。
+
 适合阅读英文数学教材时使用的中英混排边注讲义类。以 [`references/subook/subook.cls`](references/subook/subook.cls) 为主要设计依据，参考 [`references/kaobook-master/`](references/kaobook-master/) 的浅底色环境与配置拆分方式，重新实现为独立的 `lumenbook.cls` 和八个样式包。
 
 “Lumen” 有光与明晰之意：正文保留推理主线，边栏照亮术语、直觉和疑问。默认青玉配色，白色纸面，温和的背景色与细竖线区分数学内容。
